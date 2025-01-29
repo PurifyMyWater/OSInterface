@@ -45,12 +45,24 @@ public:
     virtual bool wait(uint32_t max_time_to_wait_ms) = 0;
 };
 
+/**
+ * This implementation assumes that once created, the semaphore needs to be signaled before it can be waited on. (The initial value is 0)
+ */
+class OSShim_BinarySemaphore
+{
+public:
+    virtual ~OSShim_BinarySemaphore() = default;
+    virtual void signal() = 0;
+    virtual bool wait(uint32_t max_time_to_wait_ms) = 0;
+};
+
 class OSShim
 {
 public:
     virtual void osSleep(uint32_t ms) = 0;
     virtual uint32_t osMillis() = 0;
     virtual OSShim_Mutex* osCreateMutex() = 0;
+    virtual OSShim_BinarySemaphore* osCreateBinarySemaphore() = 0;
 
     virtual void* osMalloc(uint32_t size) = 0;
     virtual void osFree(void* ptr) = 0;
