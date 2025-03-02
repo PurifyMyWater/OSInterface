@@ -4,38 +4,14 @@
 #include <cstdint>
 #include <cstdio>
 
-#ifdef ESP_PLATFORM
-#warning "MOVE THIS CODE TO ESP PLATFORM IMPLEMENTATION"
+#define TOSTRING(x) #x
+#define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
 
-#include "esp_log.h"
-
-#ifndef OSInterfaceVerbose
-#define OSInterfaceVerbose(tag, format, ...) ESP_LOGV(tag, format, ##__VA_ARGS__)
-#endif
-
-#ifndef OSInterfaceDebug
-#define OSInterfaceDebug(tag, format, ...) ESP_LOGD(tag, format, ##__VA_ARGS__)
-#endif
-
-#ifndef OSInterfaceInfo
-#define OSInterfaceInfo(tag, format, ...) ESP_LOGI(tag, format, ##__VA_ARGS__)
-#endif
-
-#ifndef OSInterfaceWarning
-#define OSInterfaceWarning(tag, format, ...) ESP_LOGW(tag, format, ##__VA_ARGS__)
-#endif
-
-#ifndef OSInterfaceError
-#define OSInterfaceError(tag, format, ...) ESP_LOGE(tag, format, ##__VA_ARGS__)
-#endif
-
-#endif
-
-#define OSInterfaceVerbose(tag, format, ...) printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceDebug(tag, format, ...) printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceInfo(tag, format, ...) printf("Info - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceWarning(tag, format, ...) printf("Warning - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceError(tag, format, ...) printf("Error - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogVerbose(tag, format, ...) printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogDebug(tag, format, ...) printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogInfo(tag, format, ...) printf("Info - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogWarning(tag, format, ...) printf("Warning - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogError(tag, format, ...) printf("Error - %s: " format "\n", tag, ##__VA_ARGS__)
 
 class OSInterface_Mutex
 {
