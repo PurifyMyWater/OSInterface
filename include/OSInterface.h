@@ -12,6 +12,17 @@
 #define OSInterfaceLogInfo(tag, format, ...) printf("Info - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceLogWarning(tag, format, ...) printf("Warning - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceLogError(tag, format, ...) printf("Error - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceSetLogLevel(tag, level) printf("Set log level of tag '%s' to '%d'\n", tag, level)
+
+typedef enum {
+    OSInterface_LOG_NONE    = 0,    /*!< No log output */
+    OSInterface_LOG_ERROR   = 1,    /*!< Critical errors, software module can not recover on its own */
+    OSInterface_LOG_WARN    = 2,    /*!< Error conditions from which recovery measures have been taken */
+    OSInterface_LOG_INFO    = 3,    /*!< Information messages which describe normal flow of events */
+    OSInterface_LOG_DEBUG   = 4,    /*!< Extra information which is not necessary for normal use (values, pointers, sizes, etc). */
+    OSInterface_LOG_VERBOSE = 5,    /*!< Bigger chunks of debugging information, or frequent messages which can potentially flood the output. */
+    OSInterface_LOG_MAX     = 6,    /*!< Number of levels supported */
+} OSInterfaceLogLevel;
 
 class OSInterface_Mutex
 {

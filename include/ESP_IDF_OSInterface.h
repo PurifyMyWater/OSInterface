@@ -25,3 +25,8 @@
 #undef OSInterfaceLogError
 #endif
 #define OSInterfaceLogError(tag, format, ...) ESP_LOGE(tag, format, ##__VA_ARGS__)
+
+#ifdef OSInterfaceSetLogLevel
+#undef OSInterfaceSetLogLevel
+#endif
+#define OSInterfaceSetLogLevel(tag, level) esp_log_level_set(tag, level)
