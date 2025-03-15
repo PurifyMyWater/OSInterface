@@ -10,6 +10,5 @@ if (ESP_PLATFORM)
     endif ()
 endif ()
 
-
-add_library(OSInterface INTERFACE)
-target_include_directories(OSInterface INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+add_subdirectory(include)
+add_subdirectory(lintHelper)

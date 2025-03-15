@@ -1,5 +1,9 @@
 #include "OSInterface.h"
-#include "esp_log.h"
+
+#if ESP_DEFINED
+    #include "esp_log.h"
+#endif
+
 
 #ifdef OSInterfaceLogVerbose
     #undef OSInterfaceLogVerbose
