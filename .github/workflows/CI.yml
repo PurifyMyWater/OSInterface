@@ -27,9 +27,16 @@ jobs:
             -   name: "Checkout repository"
                 uses: actions/checkout@v4
 
-            -   name: Configure CMake
-                working-directory: ${{ runner.workspace }}
-                run: mkdir build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=--coverage -DCMAKE_C_FLAGS=--coverage -S $GITHUB_WORKSPACE -B ./build
+            -   name: Configure CMake with GCC and coverage
+                run: |
+                    mkdir build
+                    cmake -DCMAKE_BUILD_TYPE=Release \
+                          -DCMAKE_C_COMPILER=gcc \
+                          -DCMAKE_CXX_COMPILER=g++ \
+                          -DCMAKE_CXX_FLAGS="--coverage" \
+                          -DCMAKE_C_FLAGS="--coverage" \
+                          -S $GITHUB_WORKSPACE \
+                          -B ./build
 
             -   name: Linter
                 uses: cpp-linter/cpp-linter-action@v2
