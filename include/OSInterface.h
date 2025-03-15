@@ -4,7 +4,8 @@
 #include <cstdint>
 #include <cstdio>
 
-#define TOSTRING(x) #x
+#define EXPAND_TO_STRING(x) #x
+#define TOSTRING(x) EXPAND_TO_STRING(x)
 #define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
 
 #define OSInterfaceLogVerbose(tag, format, ...) printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__)
