@@ -12,7 +12,8 @@
 #define OSInterfaceLogInfo(tag, format, ...) printf("Info - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceLogWarning(tag, format, ...) printf("Warning - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceLogError(tag, format, ...) printf("Error - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceSetLogLevel(tag, level) printf("Set log level of tag '%s' to '%d'\n", tag, level)
+#define OSInterfaceSetLogLevel(tag, level) printf("Mock: Set log level of tag '%s' to '%d'\n", tag, level)
+#define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
 typedef enum {
     OSInterface_LOG_NONE    = 0,    /*!< No log output */
