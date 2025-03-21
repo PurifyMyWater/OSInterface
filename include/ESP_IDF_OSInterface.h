@@ -1,5 +1,7 @@
 #ifndef ESP_IDF_OSINTERFACE_H
-#define ESP_IDF_OSINTERFACE_H #include "OSInterface.h"
+#define ESP_IDF_OSINTERFACE_H
+
+#include "OSInterface.h"
 
 #if ESP_DEFINED
     #include "esp_log.h"
@@ -41,3 +43,4 @@
 #define OSInterfaceGetLogLevel(tag) esp_log_get_level(tag)
 
 #endif // ESP_IDF_OSINTERFACE_H
+
