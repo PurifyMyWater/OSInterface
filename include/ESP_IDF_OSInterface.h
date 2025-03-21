@@ -43,4 +43,3 @@
 #define OSInterfaceGetLogLevel(tag) esp_log_get_level(tag)
 
 #endif // ESP_IDF_OSINTERFACE_H
-

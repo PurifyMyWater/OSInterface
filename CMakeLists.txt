@@ -12,4 +12,3 @@ endif ()
 
 add_subdirectory(include)
 add_subdirectory(lintHelper)
-
