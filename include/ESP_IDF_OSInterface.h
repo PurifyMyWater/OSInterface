@@ -25,12 +25,12 @@
 #ifdef OSInterfaceLogWarning
     #undef OSInterfaceLogWarning
 #endif
-#define OSInterfaceLogWarning(tag, format, ...) ESP_LOGW(tag, format, ##__VA_ARGS__)
+#define OSInterfaceLogWarning(tag, format, ...) ESP_LOGW(tag, AT format, ##__VA_ARGS__)
 
 #ifdef OSInterfaceLogError
     #undef OSInterfaceLogError
 #endif
-#define OSInterfaceLogError(tag, format, ...) ESP_LOGE(tag, format, ##__VA_ARGS__)
+#define OSInterfaceLogError(tag, format, ...) ESP_LOGE(tag, AT format, ##__VA_ARGS__)
 
 #ifdef OSInterfaceSetLogLevel
     #undef OSInterfaceSetLogLevel
