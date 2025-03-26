@@ -35,7 +35,7 @@
 #ifdef OSInterfaceSetLogLevel
     #undef OSInterfaceSetLogLevel
 #endif
-#define OSInterfaceSetLogLevel(tag, level) esp_log_level_set(tag, level)
+#define OSInterfaceSetLogLevel(tag, level) esp_log_level_set(tag, static_cast<esp_log_level_t>(level))
 
 #ifdef OSInterfaceGetLogLevel
     #undef OSInterfaceGetLogLevel
