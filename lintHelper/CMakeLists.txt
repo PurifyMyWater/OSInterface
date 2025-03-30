@@ -1,3 +1,0 @@
-add_executable(OSInterface_lintHelper lintHelper.cpp)
-
-target_link_libraries(OSInterface_lintHelper PUBLIC OSInterface)
