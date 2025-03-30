@@ -31,14 +31,14 @@ using OSInterfaceLogLevel = enum {
 class OSInterface_Mutex
 {
 public:
-    virtual ~OSInterface_Mutex()                    = default;
+    virtual ~OSInterface_Mutex() = default;
 
     /**
      * @brief Signal the mutex
      *
      * @note This will unlock the mutex.
      */
-    virtual void signal()                           = 0;
+    virtual void signal() = 0;
 
     /**
      * @brief Wait for the mutex to be available
@@ -56,14 +56,14 @@ public:
 class OSInterface_BinarySemaphore
 {
 public:
-    virtual ~OSInterface_BinarySemaphore()          = default;
+    virtual ~OSInterface_BinarySemaphore() = default;
 
     /**
      * @brief Signal the semaphore
      *
      * @note This will signal the semaphore.
      */
-    virtual void signal()                           = 0;
+    virtual void signal() = 0;
 
     /**
      * @brief Wait for the semaphore to be available
