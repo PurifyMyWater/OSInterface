@@ -31,8 +31,21 @@ using OSInterfaceLogLevel = enum {
 class OSInterface_Mutex
 {
 public:
-    virtual ~OSInterface_Mutex()                    = default;
-    virtual void signal()                           = 0;
+    virtual ~OSInterface_Mutex() = default;
+
+    /**
+     * @brief Signal the mutex
+     *
+     * @note This will unlock the mutex.
+     */
+    virtual void signal() = 0;
+
+    /**
+     * @brief Wait for the mutex to be available
+     *
+     * @param max_time_to_wait_ms Maximum time to wait in milliseconds
+     * @return true if the mutex was acquired, false if the timeout was reached
+     */
     virtual bool wait(uint32_t max_time_to_wait_ms) = 0;
 };
 
@@ -43,21 +56,75 @@ public:
 class OSInterface_BinarySemaphore
 {
 public:
-    virtual ~OSInterface_BinarySemaphore()          = default;
-    virtual void signal()                           = 0;
+    virtual ~OSInterface_BinarySemaphore() = default;
+
+    /**
+     * @brief Signal the semaphore
+     *
+     * @note This will signal the semaphore.
+     */
+    virtual void signal() = 0;
+
+    /**
+     * @brief Wait for the semaphore to be available
+     *
+     * @param max_time_to_wait_ms Maximum time to wait in milliseconds
+     * @return true if the semaphore was acquired, false if the timeout was reached
+     */
     virtual bool wait(uint32_t max_time_to_wait_ms) = 0;
 };
 
 class OSInterface
 {
 public:
-    virtual void                         osSleep(uint32_t ms)      = 0;
-    virtual uint32_t                     osMillis()                = 0;
-    virtual OSInterface_Mutex*           osCreateMutex()           = 0;
+    /**
+     * @brief Sleep for a given number of milliseconds
+     *
+     * @param ms Number of milliseconds to sleep
+     */
+    virtual void osSleep(uint32_t ms) = 0;
+
+    /**
+     * @brief Get the current time in milliseconds
+     *
+     * @return uint32_t Current time in milliseconds
+     */
+    virtual uint32_t osMillis() = 0;
+
+    /**
+     * @brief Create a mutex
+     *
+     * @return OSInterface_Mutex* Pointer to the created mutex
+     * @note The mutex is created in the unlocked state.
+     * @note The mutex needs to be freed with delete.
+     */
+    virtual OSInterface_Mutex* osCreateMutex() = 0;
+
+    /**
+     * @brief Create a binary semaphore
+     *
+     * @return OSInterface_BinarySemaphore* Pointer to the created binary semaphore
+     * @note The semaphore is created with the initial value of 0.
+     * @note The semaphore needs to be freed with delete.
+     */
     virtual OSInterface_BinarySemaphore* osCreateBinarySemaphore() = 0;
 
+    /**
+     * @brief Allocate memory
+     *
+     * @param size Size of the memory to allocate
+     * @return void* Pointer to the allocated memory
+     * @note If size is 0, the function will return null pointer.
+     */
     virtual void* osMalloc(uint32_t size) = 0;
-    virtual void  osFree(void* ptr)       = 0;
+
+    /**
+     * @brief Free memory
+     *
+     * @param ptr Pointer to the memory to free
+     * @note If ptr is null, the function will do nothing.
+     */
+    virtual void osFree(void* ptr) = 0;
 
     virtual ~OSInterface() = default;
 };
