@@ -11,8 +11,8 @@
 #define OSInterfaceLogVerbose(tag, format, ...) printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceLogDebug(tag, format, ...) printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceLogInfo(tag, format, ...) printf("Info - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceLogWarning(tag, format, ...) printf(AT "Warning - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceLogError(tag, format, ...) printf(AT "Error - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogWarning(tag, format, ...) printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__)
+#define OSInterfaceLogError(tag, format, ...) printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__)
 #define OSInterfaceSetLogLevel(tag, level) printf("Mock: Set log level of tag '%s' to '%d'\n", tag, level)
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
