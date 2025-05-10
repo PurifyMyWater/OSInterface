@@ -8,12 +8,12 @@
 #define TOSTRING(x) EXPAND_TO_STRING(x)
 #define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
 
-#define OSInterfaceLogVerbose(tag, format, ...) printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceLogDebug(tag, format, ...) printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceLogInfo(tag, format, ...) printf("Info - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceLogWarning(tag, format, ...) printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceLogError(tag, format, ...) printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__)
-#define OSInterfaceSetLogLevel(tag, level) printf("Mock: Set log level of tag '%s' to '%d'\n", tag, level)
+#define OSInterfaceLogVerbose(tag, format, ...) do{printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
+#define OSInterfaceLogDebug(tag, format, ...) do{printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
+#define OSInterfaceLogInfo(tag, format, ...) do{printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
+#define OSInterfaceLogWarning(tag, format, ...) do{printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
+#define OSInterfaceLogError(tag, format, ...) do{printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
+#define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%d'\n", tag, level);fflush(stdout);}while(0)
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
 using OSInterfaceLogLevel = enum {
