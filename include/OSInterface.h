@@ -8,6 +8,12 @@
 #define TOSTRING(x) EXPAND_TO_STRING(x)
 #define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
 
+#ifdef NDEBUG
+    #define ASSERT_SAFE(expression, condition) expression
+#else
+    #define ASSERT_SAFE(expression, condition) assert(expression condition)
+#endif
+
 #define OSInterfaceLogVerbose(tag, format, ...) do{printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
 #define OSInterfaceLogDebug(tag, format, ...) do{printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
 #define OSInterfaceLogInfo(tag, format, ...) do{printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
