@@ -34,7 +34,7 @@ using OSInterfaceLogLevel = enum {
     OSInterface_LOG_MAX = 6, /*!< Number of levels supported */
 };
 
-using OSInterfaceProcessFunction = void (*)(void* arg);
+using OSInterfaceProcess = void (*)(void* arg);
 
 class OSInterface_Mutex
 {
@@ -138,11 +138,18 @@ public:
      * @brief Run a process in a separate thread
      *
      * @param process Process to run
+     * @param arg Argument to pass to the process
+     * @note The process will be run in a separate thread.
+     */
+    /**
+     * @brief Run a process in a separate thread
+     *
+     * @param process Process to run
      * @param processName (Optional) Name of the process. Defaults to nullptr.
      * @param arg Argument to pass to the process
      * @note The process will be run in a separate thread.
      */
-    virtual void osRunProcess(OSInterfaceProcessFunction process, const char* processName = "NewProcess", void* arg) = 0;
+    virtual void osRunProcess(OSInterfaceProcess process, const char* processName = nullptr, void* arg) = 0;
 
     virtual ~OSInterface() = default;
 };
