@@ -141,7 +141,7 @@ public:
      * @param arg Argument to pass to the process
      * @note The process will be run in a separate thread.
      */
-    virtual void osRunProcess(OSInterfaceProcess process, void* arg) = 0;
+    virtual void osRunProcess(const OSInterfaceProcess process, void* arg) = 0;
 
     /**
      * @brief Run a process in a separate thread with a name
@@ -151,7 +151,7 @@ public:
      * @param arg Argument to pass to the process
      * @note The process will be run in a separate thread.
      */
-    virtual void osRunProcess(OSInterfaceProcess process, const char* processName, void* arg) = 0;
+    virtual void osRunProcess(const OSInterfaceProcess process, const char* processName, void* arg) = 0;
 
     virtual ~OSInterface() = default;
 };
