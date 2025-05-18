@@ -142,7 +142,7 @@ public:
      * @param arg Argument to pass to the process
      * @note The process will be run in a separate thread.
      */
-    virtual void osRunProcess(OSInterfaceProcessFunction process, const char* processName = "NewProcess", void* arg) = 0;
+    virtual void osRunProcess(OSInterfaceProcessFunction process, void* arg, const char* processName = "NewProcess") = 0;
 
     virtual ~OSInterface() = default;
 };
