@@ -138,8 +138,8 @@ public:
      * @brief Run a process in a separate thread
      *
      * @param process Process to run
-     * @param processName (Optional) Name of the process. Defaults to nullptr.
      * @param arg Argument to pass to the process
+     * @param processName (Optional) Name of the process. Defaults to "NewProcess".
      * @note The process will be run in a separate thread.
      */
     virtual void osRunProcess(OSInterfaceProcessFunction process, void* arg, const char* processName = "NewProcess") = 0;
