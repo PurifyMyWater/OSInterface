@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <cinttypes>
 
 #define EXPAND_TO_STRING(x) #x
 #define TOSTRING(x) EXPAND_TO_STRING(x)
