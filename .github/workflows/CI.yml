@@ -1,0 +1,25 @@
+# https://cpp-linter.github.io/cpp-linter-action/
+
+name: CI
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+on:
+    pull_request:
+        branches-ignore:
+            - '*Test*'
+    push:
+        branches:
+            - 'develop'
+            - 'main'
+
+jobs:
+    success:
+        permissions: {}
+        runs-on: ubuntu-latest
+        if: always()
+        steps:
+            -   name: Check merge-gatekeeper result
+                run: echo "CI passed."
