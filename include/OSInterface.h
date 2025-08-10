@@ -20,7 +20,7 @@
 #define OSInterfaceLogInfo(tag, format, ...) do{printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
 #define OSInterfaceLogWarning(tag, format, ...) do{printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
 #define OSInterfaceLogError(tag, format, ...) do{printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%d'\n", tag, level);fflush(stdout);}while(0)
+#define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%" PRId8 "'\n", tag, level);fflush(stdout);}while(0)
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
 using OSInterfaceLogLevel = enum {
