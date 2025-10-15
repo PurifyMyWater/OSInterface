@@ -117,7 +117,7 @@ public:
      *
      * @return True if the timer is running, false otherwise.
      */
-    virtual bool isRunning() const = 0;
+    [[nodiscard]] virtual bool isRunning() const = 0;
 
     /**
      * @brief Change the timer period
@@ -134,14 +134,14 @@ public:
      *
      * @return uint32_t Timer period in milliseconds
      */
-    virtual uint32_t getPeriod() const = 0;
+    [[nodiscard]] virtual uint32_t getPeriod() const = 0;
 
     /**
      * @brief Get the timer mode
      *
      * @return The timer mode (one-shot or periodic)
      */
-    virtual Mode getMode() const = 0;
+    [[nodiscard]] virtual Mode getMode() const = 0;
 
     /**
      * @brief Get the timer timeout value
@@ -149,7 +149,7 @@ public:
      * @return uint32_t Timer timeout value in milliseconds
      * @note This is the time remaining until the timer expires. If the timer is not running, this value is undefined.
      */
-    virtual uint32_t getTimeout() const = 0;
+    [[nodiscard]] virtual uint32_t getTimeout() const = 0;
 
     /**
      * @brief Get the absolute time when the timer will expire
@@ -157,7 +157,7 @@ public:
      * @return uint32_t Absolute time in milliseconds when the timer will expire.
      * @note This is the absolute time (as returned by osMillis()) when the timer will expire. If the timer is not running, this value is undefined.
      */
-    virtual uint32_t getTimeoutTime() const = 0;
+    [[nodiscard]] virtual uint32_t getTimeoutTime() const = 0;
 };
 
 class OSInterface
@@ -233,7 +233,7 @@ public:
      * @param arg Argument to pass to the process
      * @note The process will be run in a separate thread.
      */
-    virtual void osRunProcess(OSInterfaceProcess process, void* arg = nullptr) = 0;
+    virtual void osRunProcess(OSInterfaceProcess process, void* arg) = 0;
 
     /**
      * @brief Run a process in a separate thread with a name
@@ -243,7 +243,7 @@ public:
      * @param arg Argument to pass to the process
      * @note The process will be run in a separate thread.
      */
-    virtual void osRunProcess(OSInterfaceProcess process, const char* processName, void* arg = nullptr) = 0;
+    virtual void osRunProcess(OSInterfaceProcess process, const char* processName, void* arg) = 0;
 
     virtual ~OSInterface() = default;
 };
