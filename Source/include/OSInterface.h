@@ -3,7 +3,6 @@
 
 #include <cstdint>
 #include <cstdio>
-#include <cinttypes>
 
 #define EXPAND_TO_STRING(x) #x
 #define TOSTRING(x) EXPAND_TO_STRING(x)
@@ -20,7 +19,7 @@
 #define OSInterfaceLogInfo(tag, format, ...) do{printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
 #define OSInterfaceLogWarning(tag, format, ...) do{printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
 #define OSInterfaceLogError(tag, format, ...) do{printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%d'\n", tag, level);fflush(stdout);}while(0)
+#define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%s'\n", tag, OSInterfaceLogLevelToString(level));fflush(stdout);}while(0)
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
 using OSInterfaceLogLevel = enum {
@@ -34,6 +33,8 @@ using OSInterfaceLogLevel = enum {
         5, /*!< Bigger chunks of debugging information, or frequent messages, which can potentially flood the output. */
     OSInterface_LOG_MAX = 6, /*!< Number of levels supported */
 };
+
+const char* OSInterfaceLogLevelToString(OSInterfaceLogLevel level);
 
 using OSInterfaceProcess = void (*)(void* arg);
 
