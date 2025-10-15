@@ -18,6 +18,8 @@ on:
 jobs:
   Build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       GH_PAT: ${{ secrets.PMW_CI_PAT }}
       GH_USER_NAME: vacmg
