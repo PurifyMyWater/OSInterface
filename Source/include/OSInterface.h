@@ -9,9 +9,9 @@
 #define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
 
 #ifdef NDEBUG
-    #define ASSERT_SAFE(expression, condition) expression
+#define ASSERT_SAFE(expression, condition) expression
 #else
-    #define ASSERT_SAFE(expression, condition) assert(expression condition)
+#define ASSERT_SAFE(expression, condition) assert(expression condition)
 #endif
 
 #define OSInterfaceLogVerbose(tag, format, ...) do{printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
@@ -22,15 +22,16 @@
 #define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%s'\n", tag, OSInterfaceLogLevelToString(level));fflush(stdout);}while(0)
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
-using OSInterfaceLogLevel = enum {
-    OSInterface_LOG_NONE  = 0, /*!< No log output */
+using OSInterfaceLogLevel = enum
+{
+    OSInterface_LOG_NONE = 0,  /*!< No log output */
     OSInterface_LOG_ERROR = 1, /*!< Critical errors, software module cannot recover on its own */
-    OSInterface_LOG_WARN  = 2, /*!< Error conditions from which recovery measures have been taken */
-    OSInterface_LOG_INFO  = 3, /*!< Information messages, which describe normal flow of events */
+    OSInterface_LOG_WARN = 2,  /*!< Error conditions from which recovery measures have been taken */
+    OSInterface_LOG_INFO = 3,  /*!< Information messages, which describe normal flow of events */
     OSInterface_LOG_DEBUG =
-        4, /*!< Extra information, which is not necessary for normal use (values, pointers, sizes, etc). */
+    4, /*!< Extra information, which is not necessary for normal use (values, pointers, sizes, etc). */
     OSInterface_LOG_VERBOSE =
-        5, /*!< Bigger chunks of debugging information, or frequent messages, which can potentially flood the output. */
+    5, /*!< Bigger chunks of debugging information, or frequent messages, which can potentially flood the output. */
     OSInterface_LOG_MAX = 6, /*!< Number of levels supported */
 };
 
@@ -205,7 +206,8 @@ public:
      * @return OSInterface_Timer* Pointer to the created timer
      * @note If there are any errors during the creation, nullptr is returned.
      */
-    virtual OSInterface_Timer* osCreateTimer(uint32_t period, OSInterface_Timer::Mode mode, OSInterfaceProcess callback, void* callbackArg = nullptr, const char* timerName = nullptr) = 0;
+    virtual OSInterface_Timer* osCreateTimer(uint32_t period, OSInterface_Timer::Mode mode, OSInterfaceProcess callback,
+                                             void*    callbackArg = nullptr, const char* timerName = nullptr) = 0;
 
     /**
      * @brief Allocate memory
