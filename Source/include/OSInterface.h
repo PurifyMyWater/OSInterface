@@ -202,12 +202,12 @@ public:
      * @param mode Timer mode (one-shot or periodic)
      * @param callback Function to call when the timer expires
      * @param callbackArg Argument to pass to the callback function
-     * @param timerName Name of the timer (optional)
+     * @param timerName Name of the timer (can be nullptr)
      * @return OSInterface_Timer* Pointer to the created timer
      * @note If there are any errors during the creation, nullptr is returned.
      */
     virtual OSInterface_Timer* osCreateTimer(uint32_t period, OSInterface_Timer::Mode mode, OSInterfaceProcess callback,
-                                             void*    callbackArg = nullptr, const char* timerName = nullptr) = 0;
+                                             void*    callbackArg, const char*        timerName) = 0;
 
     /**
      * @brief Allocate memory
