@@ -9,29 +9,64 @@
 #define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
 
 #ifdef NDEBUG
-#define ASSERT_SAFE(expression, condition) expression
+    #define ASSERT_SAFE(expression, condition) expression
 #else
-#define ASSERT_SAFE(expression, condition) assert(expression condition)
+    #define ASSERT_SAFE(expression, condition) assert(expression condition)
 #endif
 
-#define OSInterfaceLogVerbose(tag, format, ...) do{printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceLogDebug(tag, format, ...) do{printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceLogInfo(tag, format, ...) do{printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceLogWarning(tag, format, ...) do{printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceLogError(tag, format, ...) do{printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__);fflush(stdout);}while(0)
-#define OSInterfaceSetLogLevel(tag, level) do{printf("Mock: Set log level of tag '%s' to '%s'\n", tag, OSInterfaceLogLevelToString(level));fflush(stdout);}while(0)
+#define OSInterfaceLogVerbose(tag, format, ...)                                                                        \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__);                                                      \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogDebug(tag, format, ...)                                                                          \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__);                                                        \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogInfo(tag, format, ...)                                                                           \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);                                                         \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogWarning(tag, format, ...)                                                                        \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__);                                               \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogError(tag, format, ...)                                                                          \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__);                                                \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceSetLogLevel(tag, level)                                                                             \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Mock: Set log level of tag '%s' to '%s'\n", tag, OSInterfaceLogLevelToString(level));                  \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
 
-using OSInterfaceLogLevel = enum
-{
-    OSInterface_LOG_NONE = 0,  /*!< No log output */
+using OSInterfaceLogLevel = enum {
+    OSInterface_LOG_NONE  = 0, /*!< No log output */
     OSInterface_LOG_ERROR = 1, /*!< Critical errors, software module cannot recover on its own */
-    OSInterface_LOG_WARN = 2,  /*!< Error conditions from which recovery measures have been taken */
-    OSInterface_LOG_INFO = 3,  /*!< Information messages, which describe normal flow of events */
+    OSInterface_LOG_WARN  = 2, /*!< Error conditions from which recovery measures have been taken */
+    OSInterface_LOG_INFO  = 3, /*!< Information messages, which describe normal flow of events */
     OSInterface_LOG_DEBUG =
-    4, /*!< Extra information, which is not necessary for normal use (values, pointers, sizes, etc). */
+        4, /*!< Extra information, which is not necessary for normal use (values, pointers, sizes, etc). */
     OSInterface_LOG_VERBOSE =
-    5, /*!< Bigger chunks of debugging information, or frequent messages, which can potentially flood the output. */
+        5, /*!< Bigger chunks of debugging information, or frequent messages, which can potentially flood the output. */
     OSInterface_LOG_MAX = 6, /*!< Number of levels supported */
 };
 
@@ -88,11 +123,7 @@ public:
 class OSInterface_Timer
 {
 public:
-    using Mode = enum
-    {
-        ONE_SHOT,
-        PERIODIC
-    };
+    using Mode = enum { ONE_SHOT, PERIODIC };
 
     virtual ~OSInterface_Timer() = default;
 
@@ -100,7 +131,8 @@ public:
      * @brief Start the timer
      *
      * @return True if the timer was started, false if there was an error.
-     * @note If the timer is already running, the timer will re-evaluate its expiry time so that its period starts from the beginning.
+     * @note If the timer is already running, the timer will re-evaluate its expiry time so that its period starts from
+     * the beginning.
      */
     virtual bool start() = 0;
 
@@ -124,7 +156,8 @@ public:
      *
      * @param newPeriod_ms New timer period in milliseconds
      * @return True if the period was changed, false if there was an error.
-     * @note If the timer is running, the timer will re-evaluate its expiry time so that its period starts from the beginning.
+     * @note If the timer is running, the timer will re-evaluate its expiry time so that its period starts from the
+     * beginning.
      * @note If the timer is not running, the timer will start with the new period after this call.
      */
     virtual bool setPeriod(uint32_t newPeriod_ms) = 0;
@@ -155,7 +188,8 @@ public:
      * @brief Get the absolute time when the timer will expire
      *
      * @return uint32_t Absolute time in milliseconds when the timer will expire.
-     * @note This is the absolute time (as returned by osMillis()) when the timer will expire. If the timer is not running, this value is undefined.
+     * @note This is the absolute time (as returned by osMillis()) when the timer will expire. If the timer is not
+     * running, this value is undefined.
      */
     [[nodiscard]] virtual uint32_t getTimeoutTime() const = 0;
 };
@@ -207,7 +241,7 @@ public:
      * @note If there are any errors during the creation, nullptr is returned.
      */
     virtual OSInterface_Timer* osCreateTimer(uint32_t period, OSInterface_Timer::Mode mode, OSInterfaceProcess callback,
-                                             void*    callbackArg, const char*        timerName) = 0;
+                                             void* callbackArg, const char* timerName) = 0;
 
     /**
      * @brief Allocate memory
