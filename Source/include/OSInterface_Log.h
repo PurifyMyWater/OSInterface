@@ -1,0 +1,62 @@
+#ifndef OSINTERFACE_OSINTERFACE_LOG_H
+#define OSINTERFACE_OSINTERFACE_LOG_H
+
+#define OSInterfaceLogVerbose(tag, format, ...)                                                                        \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Verbose - %s: " format "\n", tag, ##__VA_ARGS__);                                                      \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogDebug(tag, format, ...)                                                                          \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Debug - %s: " format "\n", tag, ##__VA_ARGS__);                                                        \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogInfo(tag, format, ...)                                                                           \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Info - %s: " format "\n", tag, ##__VA_ARGS__);                                                         \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogWarning(tag, format, ...)                                                                        \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Warning " AT " - %s: " format "\n", tag, ##__VA_ARGS__);                                               \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceLogError(tag, format, ...)                                                                          \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Error: " AT " - %s: " format "\n", tag, ##__VA_ARGS__);                                                \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceSetLogLevel(tag, level)                                                                             \
+    do                                                                                                                 \
+    {                                                                                                                  \
+        printf("Mock: Set log level of tag '%s' to '%s'\n", tag, OSInterfaceLogLevelToString(level));                  \
+        fflush(stdout);                                                                                                \
+    }                                                                                                                  \
+    while (0)
+#define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
+
+using OSInterfaceLogLevel = enum {
+    OSInterface_LOG_NONE  = 0, /*!< No log output */
+    OSInterface_LOG_ERROR = 1, /*!< Critical errors, software module cannot recover on its own */
+    OSInterface_LOG_WARN  = 2, /*!< Error conditions from which recovery measures have been taken */
+    OSInterface_LOG_INFO  = 3, /*!< Information messages, which describe normal flow of events */
+    OSInterface_LOG_DEBUG =
+        4, /*!< Extra information, which is not necessary for normal use (values, pointers, sizes, etc). */
+    OSInterface_LOG_VERBOSE =
+        5, /*!< Bigger chunks of debugging information, or frequent messages, which can potentially flood the output. */
+    OSInterface_LOG_MAX = 6, /*!< Number of levels supported */
+};
+
+const char* OSInterfaceLogLevelToString(OSInterfaceLogLevel level);
+
+#endif // OSINTERFACE_OSINTERFACE_LOG_H
