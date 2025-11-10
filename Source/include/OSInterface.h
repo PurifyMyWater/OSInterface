@@ -244,8 +244,8 @@ public:
      * @note **Callback Execution Context and Thread-Safety:**
      *   - The callback is invoked from the context determined by the OSInterface implementation.
      *     Typically, this is a worker thread, not an interrupt service routine (ISR), but this may vary.
-     *   - Callbacks for periodic timers may be invoked again before a previous invocation completes
-     *     (i.e., callbacks may overlap/reenter) unless otherwise specified by the implementation.
+     *   - Callbacks for periodic timers cannot be invoked again before a previous invocation completes
+     *     (i.e., callbacks must not overlap/reenter) unless otherwise specified by the implementation.
      *   - The thread-safety of the callback and any resources it accesses is the responsibility of the caller.
      *   - If the timer is stopped (via stop()), whether stop() waits for an in-flight callback to complete
      *     is implementation-defined. Users should consult the implementation or avoid assuming stop() blocks.
