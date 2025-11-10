@@ -1,6 +1,8 @@
 #ifndef OSINTERFACE_OSINTERFACE_LOG_H
 #define OSINTERFACE_OSINTERFACE_LOG_H
 
+#include <cstdio>
+
 #define OSInterfaceLogVerbose(tag, format, ...)                                                                        \
     do                                                                                                                 \
     {                                                                                                                  \
