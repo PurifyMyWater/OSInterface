@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <cassert>
 
 #define EXPAND_TO_STRING(x) #x
 #define TOSTRING(x) EXPAND_TO_STRING(x)
