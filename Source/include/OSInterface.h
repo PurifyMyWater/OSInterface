@@ -1,9 +1,9 @@
 #ifndef OSInterface_h
 #define OSInterface_h
 
+#include <cassert>
 #include <cstdint>
 #include <cstdio>
-#include <cassert>
 
 #define EXPAND_TO_STRING(x) #x
 #define TOSTRING(x) EXPAND_TO_STRING(x)
@@ -249,7 +249,8 @@ public:
      *   - The thread-safety of the callback and any resources it accesses is the responsibility of the caller.
      *   - If the timer is stopped (via stop()), whether stop() waits for an in-flight callback to complete
      *     is implementation-defined. Users should consult the implementation or avoid assuming stop() blocks.
-     *   - To avoid deadlocks, callbacks should not attempt to acquire locks that may be held by stop() or timer management code.
+     *   - To avoid deadlocks, callbacks should not attempt to acquire locks that may be held by stop() or timer
+     * management code.
      */
     virtual OSInterface_Timer* osCreateTimer(uint32_t period, OSInterface_Timer::Mode mode, OSInterfaceProcess callback,
                                              void* callbackArg, const char* timerName) = 0;
