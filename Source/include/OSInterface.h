@@ -240,6 +240,16 @@ public:
      * @param timerName Name of the timer (can be nullptr)
      * @return OSInterface_Timer* Pointer to the created timer
      * @note If there are any errors during the creation, nullptr is returned.
+     *
+     * @note **Callback Execution Context and Thread-Safety:**
+     *   - The callback is invoked from the context determined by the OSInterface implementation.
+     *     Typically, this is a worker thread, not an interrupt service routine (ISR), but this may vary.
+     *   - Callbacks for periodic timers may be invoked again before a previous invocation completes
+     *     (i.e., callbacks may overlap/reenter) unless otherwise specified by the implementation.
+     *   - The thread-safety of the callback and any resources it accesses is the responsibility of the caller.
+     *   - If the timer is stopped (via stop()), whether stop() waits for an in-flight callback to complete
+     *     is implementation-defined. Users should consult the implementation or avoid assuming stop() blocks.
+     *   - To avoid deadlocks, callbacks should not attempt to acquire locks that may be held by stop() or timer management code.
      */
     virtual OSInterface_Timer* osCreateTimer(uint32_t period, OSInterface_Timer::Mode mode, OSInterfaceProcess callback,
                                              void* callbackArg, const char* timerName) = 0;
