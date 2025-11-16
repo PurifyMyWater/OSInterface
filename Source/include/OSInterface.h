@@ -6,8 +6,8 @@
 #include "OSInterface_BinarySemaphore.h"
 #include "OSInterface_Log.h"
 #include "OSInterface_Mutex.h"
-#include "OSInterface_UntypedQueue.h"
 #include "OSInterface_Timer.h"
+#include "OSInterface_UntypedQueue.h"
 
 #define EXPAND_TO_STRING(x) #x
 #define TOSTRING(x) EXPAND_TO_STRING(x)
@@ -85,7 +85,8 @@ public:
                                              void* callbackArg, const char* timerName) = 0;
 
     /**
-     * @brief Create an inter-process, untyped thread-safe message queue. To use typed messages, use OSInterface::OSInterface_Queue<T>.
+     * @brief Create an inter-process, untyped thread-safe message queue. To use typed messages, use
+     * OSInterface::OSInterface_Queue<T>.
      *
      * @param maxMessages Maximum number of messages in the queue
      * @param messageSize Size of each message in bytes
