@@ -2,8 +2,8 @@
 #define OSINTERFACE_OSINTERFACE_QUEUE_H
 
 #include <cstdint>
-#include "OSInterface_UntypedQueue.h"
 #include "OSInterface.h"
+#include "OSInterface_UntypedQueue.h"
 
 template <typename T> class OSInterface::OSInterface_Queue
 {
@@ -13,11 +13,12 @@ public:
      *
      * @param osInterface Reference to the OSInterface to use for creating the queue
      * @param maxMessages Maximum number of messages in the queue
-     * @param result Reference to store the result of the queue creation. True if the queue was created successfully, false otherwise.
+     * @param result Reference to store the result of the queue creation. True if the queue was created successfully,
+     * false otherwise.
      */
     OSInterface_Queue(OSInterface& osInterface, uint32_t maxMessages, bool& result)
     {
-        queue = osInterface.osCreateUntypedQueue(maxMessages, sizeof(T));
+        queue  = osInterface.osCreateUntypedQueue(maxMessages, sizeof(T));
         result = (queue != nullptr);
     }
 
