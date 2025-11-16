@@ -1,4 +1,4 @@
-#include "OSInterface_Log.h"
+#include "OSInterface.h"
 
 const char* OSInterfaceLogLevelToString(const OSInterfaceLogLevel level)
 {

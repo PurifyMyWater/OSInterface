@@ -6,7 +6,7 @@
 #include "OSInterface_BinarySemaphore.h"
 #include "OSInterface_Log.h"
 #include "OSInterface_Mutex.h"
-#include "OSInterface_Queue.h"
+#include "OSInterface_UntypedQueue.h"
 #include "OSInterface_Timer.h"
 
 #define EXPAND_TO_STRING(x) #x
@@ -85,7 +85,7 @@ public:
                                              void* callbackArg, const char* timerName) = 0;
 
     /**
-     * @brief Create an inter-process, thread-safe message queue
+     * @brief Create an inter-process, untyped thread-safe message queue. To use typed messages, use OSInterface::OSInterface_Queue<T>.
      *
      * @param maxMessages Maximum number of messages in the queue
      * @param messageSize Size of each message in bytes
@@ -93,7 +93,7 @@ public:
      * @note The queue needs to be freed with delete.
      * @note If there are any errors during the creation, nullptr is returned.
      */
-    virtual OSInterface_Queue* osCreateQueue(uint32_t maxMessages, uint32_t messageSize) = 0;
+    virtual OSInterface_UntypedQueue* osCreateUntypedQueue(uint32_t maxMessages, uint32_t messageSize) = 0;
 
     /**
      * @brief Allocate memory
@@ -132,6 +132,10 @@ public:
     virtual void osRunProcess(OSInterfaceProcess process, const char* processName, void* arg) = 0;
 
     virtual ~OSInterface() = default;
+
+    template <typename T> class OSInterface_Queue;
 };
+
+#include "OSInterface_Queue.h"
 
 #endif // OSInterface_h
