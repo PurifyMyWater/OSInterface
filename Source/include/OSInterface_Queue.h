@@ -16,18 +16,15 @@ public:
      * @param result Reference to store the result of the queue creation. True if the queue was created successfully,
      * false otherwise.
      */
-    OSInterface_Queue(OSInterface& osInterface, uint32_t maxMessages, bool& result)
-        : queue(osInterface.osCreateUntypedQueue(maxMessages, sizeof(T)))
+    OSInterface_Queue(OSInterface& osInterface, uint32_t maxMessages, bool& result) :
+        queue(osInterface.osCreateUntypedQueue(maxMessages, sizeof(T)))
     {
         result = (queue != nullptr);
     }
 
     ~OSInterface_Queue()
     {
-        if (queue != nullptr)
-        {
-            delete queue;
-        }
+        delete queue;
     }
 
     /**
