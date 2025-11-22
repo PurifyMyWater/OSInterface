@@ -26,7 +26,7 @@ public:
     OSInterface_Queue(const OSInterface_Queue&)            = delete;
     OSInterface_Queue& operator=(const OSInterface_Queue&) = delete;
 
-    // Delete move constructor and move assignment operator
+    // Delete move constructor and move assignment operator to prevent ownership transfer issues
     OSInterface_Queue(OSInterface_Queue&&)            = delete;
     OSInterface_Queue& operator=(OSInterface_Queue&&) = delete;
 
