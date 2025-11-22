@@ -24,7 +24,10 @@ public:
 
     ~OSInterface_Queue()
     {
-        delete queue;
+        if (queue != nullptr)
+        {
+            delete queue;
+        }
     }
 
     /**
