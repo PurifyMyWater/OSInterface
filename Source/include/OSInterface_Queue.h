@@ -48,7 +48,7 @@ public:
      * @brief Get the number of messages currently in the queue
      *
      * @pre Queue must have been successfully constructed (constructor result was true)
-     * @return int Number of messages in the queue
+     * @return uint32_t Number of messages in the queue
      */
     uint32_t length()
     {
@@ -59,7 +59,7 @@ public:
      * @brief Get the number of slots in the queue
      *
      * @pre Queue must have been successfully constructed (constructor result was true)
-     * @return int Number of slots in the queue
+     * @return uint32_t Number of slots in the queue
      */
     uint32_t size()
     {
@@ -70,7 +70,7 @@ public:
      * @brief Get the number of empty slots in the queue
      *
      * @pre Queue must have been successfully constructed (constructor result was true)
-     * @return int Number of empty slots in the queue
+     * @return uint32_t Number of empty slots in the queue
      */
     uint32_t available()
     {
