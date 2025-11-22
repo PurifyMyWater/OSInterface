@@ -9,7 +9,7 @@ template <typename T> class OSInterface::OSInterface_Queue
 {
 public:
     /**
-     * @brief Create an inter-process, thread-safe message queue
+     * @brief Create an inter-thread, thread-safe message queue
      *
      * @param osInterface Reference to the OSInterface to use for creating the queue
      * @param maxMessages Maximum number of messages in the queue
@@ -17,8 +17,8 @@ public:
      * false otherwise.
      */
     OSInterface_Queue(OSInterface& osInterface, uint32_t maxMessages, bool& result)
+        : queue(osInterface.osCreateUntypedQueue(maxMessages, sizeof(T)))
     {
-        queue  = osInterface.osCreateUntypedQueue(maxMessages, sizeof(T));
         result = (queue != nullptr);
     }
 
