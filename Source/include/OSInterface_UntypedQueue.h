@@ -2,7 +2,6 @@
 #define OSINTERFACE_OSINTERFACE_UNTYPEDQUEUE_H
 
 #include <cstdint>
-#include "OSInterface.h"
 
 class OSInterface_UntypedQueue
 {
