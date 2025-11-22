@@ -50,7 +50,7 @@ public:
      * @pre Queue must have been successfully constructed (constructor result was true)
      * @return uint32_t Number of messages in the queue
      */
-    uint32_t length()
+    [[nodiscard]] uint32_t length()
     {
         return queue->length();
     }
@@ -61,7 +61,7 @@ public:
      * @pre Queue must have been successfully constructed (constructor result was true)
      * @return uint32_t Number of slots in the queue
      */
-    uint32_t size()
+    [[nodiscard]] uint32_t size()
     {
         return queue->size();
     }
@@ -72,7 +72,7 @@ public:
      * @pre Queue must have been successfully constructed (constructor result was true)
      * @return uint32_t Number of empty slots in the queue
      */
-    uint32_t available()
+    [[nodiscard]] uint32_t available()
     {
         return queue->available();
     }
@@ -83,7 +83,7 @@ public:
      * @pre Queue must have been successfully constructed (constructor result was true)
      * @return true if the queue is empty, false otherwise
      */
-    bool isEmpty()
+    [[nodiscard]] bool isEmpty()
     {
         return queue->isEmpty();
     }
@@ -94,7 +94,7 @@ public:
      * @pre Queue must have been successfully constructed (constructor result was true)
      * @return true if the queue is full, false otherwise
      */
-    bool isFull()
+    [[nodiscard]] bool isFull()
     {
         return queue->isFull();
     }
