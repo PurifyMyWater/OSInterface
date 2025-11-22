@@ -5,6 +5,15 @@
 #include "OSInterface.h"
 #include "OSInterface_UntypedQueue.h"
 
+/**
+ * @brief Template wrapper for inter-process, thread-safe message queues
+ *
+ * @warning Methods of this class MUST NOT be called if the constructor failed (result is false).
+ *          Calling methods on a queue that failed to construct will result in undefined behavior.
+ *          Always check the result parameter from the constructor before using the queue.
+ *
+ * @tparam T The type of messages to store in the queue
+ */
 template <typename T> class OSInterface::OSInterface_Queue
 {
 public:
@@ -14,7 +23,7 @@ public:
      * @param osInterface Reference to the OSInterface to use for creating the queue
      * @param maxMessages Maximum number of messages in the queue
      * @param result Reference to store the result of the queue creation. True if the queue was created successfully,
-     * false otherwise.
+     * false otherwise. MUST be checked before calling any other methods on this object.
      */
     OSInterface_Queue(OSInterface& osInterface, uint32_t maxMessages, bool& result)
         : queue(osInterface.osCreateUntypedQueue(maxMessages, sizeof(T)))
@@ -33,6 +42,7 @@ public:
     /**
      * @brief Get the number of messages currently in the queue
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @return int Number of messages in the queue
      */
     uint32_t length()
@@ -43,6 +53,7 @@ public:
     /**
      * @brief Get the number of slots in the queue
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @return int Number of slots in the queue
      */
     uint32_t size()
@@ -53,6 +64,7 @@ public:
     /**
      * @brief Get the number of empty slots in the queue
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @return int Number of empty slots in the queue
      */
     uint32_t available()
@@ -63,6 +75,7 @@ public:
     /**
      * @brief Check if the queue is empty
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @return true if the queue is empty, false otherwise
      */
     bool isEmpty()
@@ -73,6 +86,7 @@ public:
     /**
      * @brief Check if the queue is full
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @return true if the queue is full, false otherwise
      */
     bool isFull()
@@ -82,6 +96,8 @@ public:
 
     /**
      * @brief Reset the queue, removing all messages
+     *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      */
     void reset()
     {
@@ -91,6 +107,7 @@ public:
     /**
      * @brief Receive a message from the queue
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @param message Reference to store the received message
      * @param maxTimeToWait_ms Maximum time to wait in milliseconds
      * @return true if a message was received, false if the timeout was reached
@@ -103,6 +120,7 @@ public:
     /**
      * @brief Receive a message from the queue from an ISR
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @param message Reference to store the received message
      * @return true if a message was received, false otherwise
      */
@@ -114,6 +132,7 @@ public:
     /**
      * @brief Send a message to the back of the queue
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @param message Message to send
      * @param maxTimeToWait_ms Maximum time to wait in milliseconds
      * @return true if the message was sent, false if the timeout was reached
@@ -126,6 +145,7 @@ public:
     /**
      * @brief Send a message to the back of the queue from an ISR
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @param message Message to send
      * @return true if the message was sent, false otherwise
      */
@@ -137,6 +157,7 @@ public:
     /**
      * @brief Send a message to the front of the queue
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @param message Message to send
      * @param maxTimeToWait_ms Maximum time to wait in milliseconds
      * @return true if the message was sent, false if the timeout was reached
@@ -149,6 +170,7 @@ public:
     /**
      * @brief Send a message to the front of the queue from an ISR
      *
+     * @pre Queue must have been successfully constructed (constructor result was true)
      * @param message Message to send
      * @return true if the message was sent, false otherwise
      */
