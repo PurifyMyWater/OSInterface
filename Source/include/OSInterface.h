@@ -85,12 +85,12 @@ public:
                                              void* callbackArg, const char* timerName) = 0;
 
     /**
-     * @brief Create an inter-process, untyped thread-safe message queue. To use typed messages, use
+     * @brief Create an inter-thread, untyped thread-safe message queue. To use typed messages, use
      * OSInterface::OSInterface_Queue<T>.
      *
      * @param maxMessages Maximum number of messages in the queue
      * @param messageSize Size of each message in bytes
-     * @return OSInterface_Queue* Pointer to the created queue
+     * @return OSInterface_UntypedQueue* Pointer to the created queue
      * @note The queue needs to be freed with delete.
      * @note If there are any errors during the creation, nullptr is returned.
      */
