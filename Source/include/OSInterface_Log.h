@@ -3,6 +3,7 @@
 
 #include <cstdio>
 
+#ifndef OSInterfaceLogVerbose
 #define OSInterfaceLogVerbose(tag, format, ...)                                                                        \
     do                                                                                                                 \
     {                                                                                                                  \
@@ -10,6 +11,9 @@
         fflush(stdout);                                                                                                \
     }                                                                                                                  \
     while (0)
+#endif
+
+#ifndef OSInterfaceLogDebug
 #define OSInterfaceLogDebug(tag, format, ...)                                                                          \
     do                                                                                                                 \
     {                                                                                                                  \
@@ -17,6 +21,9 @@
         fflush(stdout);                                                                                                \
     }                                                                                                                  \
     while (0)
+#endif
+
+#ifndef OSInterfaceLogInfo
 #define OSInterfaceLogInfo(tag, format, ...)                                                                           \
     do                                                                                                                 \
     {                                                                                                                  \
@@ -24,6 +31,9 @@
         fflush(stdout);                                                                                                \
     }                                                                                                                  \
     while (0)
+#endif
+
+#ifndef OSInterfaceLogWarning
 #define OSInterfaceLogWarning(tag, format, ...)                                                                        \
     do                                                                                                                 \
     {                                                                                                                  \
@@ -31,6 +41,9 @@
         fflush(stdout);                                                                                                \
     }                                                                                                                  \
     while (0)
+#endif
+
+#ifndef OSInterfaceLogError
 #define OSInterfaceLogError(tag, format, ...)                                                                          \
     do                                                                                                                 \
     {                                                                                                                  \
@@ -38,6 +51,9 @@
         fflush(stdout);                                                                                                \
     }                                                                                                                  \
     while (0)
+#endif
+
+#ifndef OSInterfaceSetLogLevel
 #define OSInterfaceSetLogLevel(tag, level)                                                                             \
     do                                                                                                                 \
     {                                                                                                                  \
@@ -45,7 +61,11 @@
         fflush(stdout);                                                                                                \
     }                                                                                                                  \
     while (0)
+#endif
+
+#ifndef OSInterfaceGetLogLevel
 #define OSInterfaceGetLogLevel(tag) OSInterface_LOG_INFO
+#endif
 
 using OSInterfaceLogLevel = enum {
     OSInterface_LOG_NONE  = 0, /*!< No log output */
