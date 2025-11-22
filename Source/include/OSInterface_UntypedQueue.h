@@ -11,21 +11,21 @@ public:
     /**
      * @brief Get the number of messages currently in the queue
      *
-     * @return int Number of messages in the queue
+     * @return uint32_t Number of messages in the queue
      */
     [[nodiscard]] virtual uint32_t length() = 0;
 
     /**
      * @brief Get the number of slots in the queue
      *
-     * @return int Number of slots in the queue
+     * @return uint32_t Number of slots in the queue
      */
     [[nodiscard]] virtual uint32_t size() = 0;
 
     /**
      * @brief Get the number of empty slots in the queue
      *
-     * @return int Number of empty slots in the queue
+     * @return uint32_t Number of empty slots in the queue
      */
     [[nodiscard]] virtual uint32_t available() = 0;
 
