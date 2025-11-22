@@ -13,35 +13,35 @@ public:
      *
      * @return int Number of messages in the queue
      */
-    virtual uint32_t length() = 0;
+    [[nodiscard]] virtual uint32_t length() = 0;
 
     /**
      * @brief Get the number of slots in the queue
      *
      * @return int Number of slots in the queue
      */
-    virtual uint32_t size() = 0;
+    [[nodiscard]] virtual uint32_t size() = 0;
 
     /**
      * @brief Get the number of empty slots in the queue
      *
      * @return int Number of empty slots in the queue
      */
-    virtual uint32_t available() = 0;
+    [[nodiscard]] virtual uint32_t available() = 0;
 
     /**
      * @brief Check if the queue is empty
      *
      * @return true if the queue is empty, false otherwise
      */
-    virtual bool isEmpty() = 0;
+    [[nodiscard]] virtual bool isEmpty() = 0;
 
     /**
      * @brief Check if the queue is full
      *
      * @return true if the queue is full, false otherwise
      */
-    virtual bool isFull() = 0;
+    [[nodiscard]] virtual bool isFull() = 0;
 
     /**
      * @brief Reset the queue, removing all messages
