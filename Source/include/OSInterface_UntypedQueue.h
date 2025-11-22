@@ -51,8 +51,8 @@ public:
     /**
      * @brief Receive a message from the queue
      *
-     * @param message Reference to store the received message. The message buffer must be of size messageSize specified
-     * during queue creation.
+     * @param message Pointer to buffer to store the received message. The message buffer must be of size messageSize
+     * specified during queue creation.
      * @param maxTimeToWait_ms Maximum time to wait in milliseconds
      * @return true if a message was received, false if the timeout was reached
      */
@@ -61,8 +61,8 @@ public:
     /**
      * @brief Receive a message from the queue from an ISR
      *
-     * @param message Reference to store the received message. The message buffer must be of size messageSize specified
-     * during queue creation.
+     * @param message Pointer to buffer to store the received message. The message buffer must be of size messageSize
+     * specified during queue creation.
      * @return true if a message was received, false otherwise
      */
     virtual bool receiveFromISR(void* message) = 0;
