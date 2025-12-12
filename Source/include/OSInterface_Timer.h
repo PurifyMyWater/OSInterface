@@ -20,12 +20,29 @@ public:
     virtual bool start() = 0;
 
     /**
+     * @brief A version of `start()` that can be called from an interrupt service routine
+     *
+     * @return True if the timer was started, false if there was an error.
+     * @note If the timer is already running, the timer will re-evaluate its expiry time so that its period starts from
+     * the beginning.
+     */
+    virtual bool startFromISR() = 0;
+
+    /**
      * @brief Stop the timer
      *
      * @return True if the timer was stopped, false if there was an error.
      * @note If the timer is not running, this function does nothing.
      */
     virtual bool stop() = 0;
+
+    /**
+     * @brief A version of `stop()` that can be called from an interrupt service routine
+     *
+     * @return True if the timer was stopped, false if there was an error.
+     * @note If the timer is not running, this function does nothing.
+     */
+    virtual bool stopFromISR() = 0;
 
     /**
      * @brief Check if the timer is running
@@ -44,6 +61,17 @@ public:
      * @note If the timer is not running, the timer will start with the new period after this call.
      */
     virtual bool setPeriod(uint32_t newPeriod_ms) = 0;
+
+    /**
+     * @brief A version of `setPeriod()` that can be called from an interrupt service routine
+     *
+     * @param newPeriod_ms New timer period in milliseconds
+     * @return True if the period was changed, false if there was an error.
+     * @note If the timer is running, the timer will re-evaluate its expiry time so that its period starts from the
+     * beginning.
+     * @note If the timer is not running, the timer will start with the new period after this call.
+     */
+    virtual bool setPeriodFromISR(uint32_t newPeriod_ms) = 0;
 
     /**
      * @brief Get the timer period
