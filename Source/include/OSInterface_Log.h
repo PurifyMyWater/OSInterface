@@ -1,6 +1,18 @@
 #ifndef OSINTERFACE_OSINTERFACE_LOG_H
 #define OSINTERFACE_OSINTERFACE_LOG_H
 
+#ifndef EXPAND_TO_STRING
+    #define EXPAND_TO_STRING(x) #x
+#endif
+
+#ifndef TOSTRING
+    #define TOSTRING(x) EXPAND_TO_STRING(x)
+#endif
+
+#ifndef AT
+    #define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
+#endif
+
 #include <cstdio>
 
 #ifndef OSInterfaceLogVerbose
