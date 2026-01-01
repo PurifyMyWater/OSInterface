@@ -9,10 +9,6 @@
 #include "OSInterface_Timer.h"
 #include "OSInterface_UntypedQueue.h"
 
-#define EXPAND_TO_STRING(x) #x
-#define TOSTRING(x) EXPAND_TO_STRING(x)
-#define AT "AT " __FILE__ ":" TOSTRING(__LINE__) ": "
-
 #ifdef NDEBUG
     #define ASSERT_SAFE(expression, condition) expression
 #else
